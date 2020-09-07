@@ -1,0 +1,54 @@
+@import './../../../../assets/scss/base';
+
+.rp-parser-form {
+	.rp-content {
+		align-items: center;
+		background-color: var(--c4);
+		border-radius: 10px;
+		display: flex;
+		justify-content: space-between;
+		margin: 30px 0 0;
+		padding: 10px 20px;
+
+		&.rp-on-result {
+			border-radius: 10px 10px 0 0;
+		}
+
+		.rp-left {
+			width: 80%;
+
+			.rp-input-label {
+				color: var(--c6);
+			}
+
+			.rp-input-url {
+				color: var(--c2);
+			}
+		}
+
+		.rp-right {
+			margin-left: 20px;
+			text-align: right;
+		}
+	}
+
+	// media
+	@media (max-width: 500px) {
+		.rp-content {
+			display: block;
+
+			.rp-left {
+				margin-bottom: 10px;
+				width: 100%;
+			}
+
+			.rp-right {
+				margin-left: 0;
+
+				Button {
+					width: 100%;
+				}
+			}
+		}
+	}
+}

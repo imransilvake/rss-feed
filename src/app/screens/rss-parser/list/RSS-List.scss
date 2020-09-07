@@ -1,0 +1,91 @@
+@import './../../../../assets/scss/base';
+
+.rp-parser-list {
+	.rp-content {
+		.rp-info {
+			background-color: var(--c6);
+			margin: 5px 0;
+			padding: 15px;
+
+			h1 {
+				margin: 0;
+				font-size: fontSize(18px);
+			}
+
+			p {
+				margin: 8px 0;
+			}
+
+			a {
+				color: var(--c4);
+			}
+		}
+
+		.rp-items {
+			.rp-item {
+				background-color: var(--c4);
+				border-radius: 0;
+				margin: 5px 0;
+				padding: 15px;
+
+				h4 {
+					color: var(--c2);
+					margin-top: 0;
+				}
+
+				a {
+					color: var(--c7);
+				}
+
+				p {
+					color: var(--c8);
+					margin: 5px 0;
+
+					&:last-child {
+						margin-bottom: 0;
+					}
+				}
+
+				hr {
+					border: none;
+					border-top: 1px solid var(--c5);
+				}
+
+				img {
+					max-width: 400px;
+				}
+			}
+		}
+
+		.rp-pagination {
+			background-color: var(--c4);
+			border-radius: 0 0 10px 10px;
+			display: flex;
+			justify-content: space-between;
+			margin: 5px 0 20px;
+			padding: 15px;
+		}
+	}
+
+	.rp-error {
+		background-color: var(--c4);
+		border-radius: 0 0 10px 10px;
+		margin: 5px 0 20px;
+		padding: 15px;
+
+		h3 {
+			color: var(--c9);
+			margin: 0;
+		}
+
+		p {
+			color: var(--c8);
+			margin: 5px 0;
+		}
+	}
+
+	.rp-load-more {
+		margin-top: 20px;
+		text-align: center;
+	}
+}
