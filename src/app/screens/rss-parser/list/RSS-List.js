@@ -3,17 +3,19 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 // redux
-import { parserFormSelector, formNextPage } from '../../../slices/parser-form';
-import { fetchApi, parserProxySelector } from '../../../slices/parser-proxy';
+import { parserFormSelector } from '../../../slices/parser-form';
+import { fetchApi, parserListSelector } from '../../../slices/parser-list';
 
 // material
 import Container from '@material-ui/core/Container';
-import { Link } from 'react-router-dom';
-import Button from '@material-ui/core/Button';
 
 // app
 import './RSS-List.scss';
+import '../../../utilities/Array-Methods';
 import Loader from '../../../../assets/images/loader.gif';
+import RSSListItem from './rss-list-item/RSS-List-Item';
+import paginatedList from '../../../utilities/Pagination';
+import RSSListPagination from './rss-list-pagination/RSS-List-Pagination';
 
 /**
  * RSS Parser List
@@ -24,85 +26,85 @@ const RSSParserList = () => {
 	// hooks
 	const dispatch = useDispatch();
 	const { rssFeedURL, page } = useSelector(parserFormSelector);
-	const { loading, response, errors } = useSelector(parserProxySelector);
+	const { loading, response, errors } = useSelector(parserListSelector);
 
-	// triggers on form submit
+	// triggers on submit
 	useEffect(() => {
 		if (rssFeedURL) {
-			// fetch RSS Feed
-			dispatch(fetchApi(rssFeedURL));
+			dispatch(fetchApi(rssFeedURL)); // fetch RSS Feed
 		}
 	}, [dispatch, rssFeedURL]);
 
+	// scroll to top of list
+	useEffect(() => {
+		const element = document.getElementById('rp-items');
+		if (element) {
+			window.scroll({
+				top: element.scrollTop,
+				behavior: 'smooth'
+			});
+		}
+	}, [page]);
+
 	/**
-     * on change page number
-     * @param {*} page
-     */
-	const pageNumber = (pageNo) => {
-		// trigger page
-		dispatch(formNextPage(pageNo));
+	 * get total count of list items
+	 */
+	const getListItemsSize = () => {
+		return response && response['items'] && response['items'].length;
 	};
 
 	/**
-	 * display feed data
+	 * display feed list
 	 */
-	const displayFeedData = () => {
+	const displayFeed = () => {
 		// validate response
-		if (response && response['title']) {
+		if (response && response['info']) {
 			return (
 				<div className="rp-content">
 					{/* feed info */}
-					{response['title'] && (
+					{response['info'] && (
 						<div className="rp-info">
-							{/* title */}
-							{response.title && <h1 className="rp-ellipses">{response.title}</h1>}
+							<div className="rp-title-date">
+								{/* title */}
+								{response['info'].title && (
+									<h1 className="rp-title rp-ellipses">{response['info'].title}</h1>
+								)}
+
+								{/* date */}
+								{response['info'].lastBuildDate && (
+									<p className="rp-date">{response['info'].lastBuildDate}</p>
+								)}
+							</div>
 
 							{/* description */}
-							{response.description && <p className="rp-ellipses">{response.description}</p>}
+							{response['info'].description && <p>{response['info'].description}</p>}
 
 							{/* link */}
-							{response.link && (<Link to={response.link} target="_blank">{response.link}</Link>)}
-
-							{/* date */}
-							{response.lastBuildDate && <p className="rp-ellipses">{response.lastBuildDate}</p>}
+							{response['info'].link && (
+								<a href={`${response['info'].link}`} target="_blank" rel="noopener noreferrer">
+									{response['info'].link}
+								</a>
+							)}
 						</div>
 					)}
 
-					{/* feed items */}
+					{/* feed items & Pagination */}
 					{response['items'] && (
-						<div className="rp-items">
-							{response['items'].map((item, index) => (
-								<div className="rp-item" key={item.guid ? item.guid : index}>
-									{/* title */}
-									{item.title && <h4 className="rp-ellipses">{item.title}</h4>}
+						<div className="rp-items-pagination">
+							{/* pagination */}
+							{getListItemsSize() > 20 && <RSSListPagination positionStart />}
 
-									{/* content */}
-									{item.content && (
-										<div dangerouslySetInnerHTML={{
-											__html: item.content
-										}} />
-									)}
-								</div>
-							))}
+							{/* feed items */}
+							<div id="rp-items" className={getListItemsSize() <= 20 ? 'rp-end' : null}>
+								{paginatedList(response['items'], page).map((item, index) => (
+									<RSSListItem item={item} key={item.guid ? item.guid : index} />
+								))}
+							</div>
+
+							{/* pagination */}
+							{getListItemsSize() > 20 && <RSSListPagination />}
 						</div>
 					)}
-
-					{/* pagination */}
-					<div className="rp-pagination">
-						<Button
-							variant="contained"
-							color="secondary"
-							onClick={() => pageNumber(page - 1)}
-							disabled={page === 0}>
-							Prev
-						</Button>
-						<Button
-							variant="contained"
-							color="secondary"
-							onClick={() => pageNumber(page + 1)}>
-							Next
-						</Button>
-					</div>
 				</div>
 			);
 		}
@@ -110,8 +112,8 @@ const RSSParserList = () => {
 		// validate error(s)
 		return errors && (
 			<div className="rp-error">
-				{ !errors['message'] && (<h3>Unknown Error</h3>) }
-				{ errors['message'] && (<h3>{ errors['message'] }</h3>) }
+				{!errors['message'] && (<h3>Unknown Error</h3>)}
+				{errors['message'] && (<h3>{errors['message']}</h3>)}
 				{
 					errors['message'] && (
 						<p>The requested resource could not be found but may be available in the future.</p>
@@ -125,7 +127,7 @@ const RSSParserList = () => {
 		<Container maxWidth="md">
 			<section className="rp-parser-list">
 				{/* RSS Feed | Error */}
-				{ displayFeedData() }
+				{displayFeed()}
 
 				{/* Loader */}
 				{loading && (

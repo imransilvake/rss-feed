@@ -2,12 +2,12 @@
 import { combineReducers } from 'redux';
 
 // app
-import parserProxyReducer from './parser-proxy';
+import parserListReducer from './parser-list';
 import parserFormReducer from './parser-form';
 
 // combine reducers
 const rootReducer = combineReducers({
-	parserProxy: parserProxyReducer,
-	parserForm: parserFormReducer
+	parserForm: parserFormReducer,
+	parserList: parserListReducer
 });
 export default rootReducer;

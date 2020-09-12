@@ -3,8 +3,8 @@ import React, { useEffect, useState } from 'react';
 
 // redux
 import { useDispatch, useSelector } from 'react-redux';
-import { proxyReset, parserProxySelector } from '../../../slices/parser-proxy';
-import { initialState, formReset, formInput } from '../../../slices/parser-form';
+import { listReset, parserListSelector } from '../../../slices/parser-list';
+import { initialState, formReset, formInput, parserFormSelector } from '../../../slices/parser-form';
 
 // material
 import Container from '@material-ui/core/Container';
@@ -23,7 +23,8 @@ const RSSParserForm = () => {
 	// hooks
 	const dispatch = useDispatch();
 	const [inputUrl, setInputUrl] = useState(initialState.rssFeedURL);
-	const { response, errors } = useSelector(parserProxySelector);
+	const { rssFeedURL } = useSelector(parserFormSelector);
+	const { response, errors } = useSelector(parserListSelector);
 
 	useEffect(() => {
 	}, [dispatch, inputUrl]);
@@ -47,8 +48,11 @@ const RSSParserForm = () => {
 		// prevent default
 		event.preventDefault();
 
-		// reset proxy state
-		dispatch(proxyReset());
+		// do nothing if same input
+		if (rssFeedURL === inputUrl) return;
+
+		// reset list state
+		dispatch(listReset());
 
 		// reset form state
 		dispatch(formReset());
@@ -60,7 +64,7 @@ const RSSParserForm = () => {
 	return (
 		<Container maxWidth="md">
 			<form onSubmit={handleSubmit} className="rp-parser-form" data-testid="rp-parser-form">
-				<div className={`rp-content ${response.title || (errors && errors['message']) ? 'rp-on-result' : ''}`}>
+				<div className={`rp-content ${response['info'] || (errors && errors['message']) ? 'rp-on-result' : ''}`}>
 					{/* Left */}
 					<div className="rp-left">
 						<TextField

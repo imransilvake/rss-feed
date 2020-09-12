@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 // initial state
 export const initialState = {
-	rssFeedURL: '',
+	rssFeedURL: 'https://feeds.npr.org/510312/podcast.xml',
 	page: 0
 };
 
@@ -12,11 +12,11 @@ const parserFormSlice = createSlice({
 	name: 'parserForm',
 	initialState,
 	reducers: {
-		formInput: (state, { payload }) => {
-			state.rssFeedURL = payload;
+		formInput: (state, action) => {
+			state.rssFeedURL = action.payload;
 		},
-		formNextPage: (state, { payload }) => {
-			state.page = payload;
+		formNextPage: (state, action) => {
+			state.page = action.payload;
 		},
 		formReset: () => initialState
 	}

@@ -7,13 +7,23 @@
 			margin: 5px 0;
 			padding: 15px;
 
-			h1 {
-				margin: 0;
-				font-size: fontSize(18px);
-			}
+			.rp-title-date {
+				align-items: center;
+				display: flex;
+				justify-content: space-between;
+				margin-bottom: 20px;
 
-			p {
-				margin: 8px 0;
+				.rp-title {
+					color: var(--c1);
+					font-size: fontSize(18px);
+					padding-right: 20px;
+					margin: 0;
+				}
+
+				.rp-date {
+					font-size: fontSize(13px);
+					margin: 0;
+				}
 			}
 
 			a {
@@ -21,49 +31,8 @@
 			}
 		}
 
-		.rp-items {
-			.rp-item {
-				background-color: var(--c4);
-				border-radius: 0;
-				margin: 5px 0;
-				padding: 15px;
-
-				h4 {
-					color: var(--c2);
-					margin-top: 0;
-				}
-
-				a {
-					color: var(--c7);
-				}
-
-				p {
-					color: var(--c8);
-					margin: 5px 0;
-
-					&:last-child {
-						margin-bottom: 0;
-					}
-				}
-
-				hr {
-					border: none;
-					border-top: 1px solid var(--c5);
-				}
-
-				img {
-					max-width: 400px;
-				}
-			}
-		}
-
-		.rp-pagination {
-			background-color: var(--c4);
-			border-radius: 0 0 10px 10px;
-			display: flex;
-			justify-content: space-between;
-			margin: 5px 0 20px;
-			padding: 15px;
+		.rp-end {
+			margin-bottom: 30px;
 		}
 	}
 
