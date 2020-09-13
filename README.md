@@ -7,14 +7,14 @@ A simple RSS Feed app that takes an XML format data and parses it to a JS object
 
 
 ## Content
-- [X] Custom JS methods:
-  - Array.prototype.map
-  - Array.prototype.filter
-  - Array.prototype.reduce
 - [X] UI contains: Form (Input + Submit button), List of items, Pagination
 - [X] Form Input allows users to input an RSS Feed URL
 - [X] Form Submit Button fetches provided RSS-feed, then parses it and uses it in List
 - [X] Validations: In case of any error, UI should show something to the user
+- [X] Rewrite Array Methods:
+  - Array.prototype.map
+  - Array.prototype.filter
+  - Array.prototype.reduce
 
 
 ## Libraries and Frameworks
