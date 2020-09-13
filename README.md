@@ -1,5 +1,5 @@
 # RSS Parser
-A simple rss parser
+A simple RSS Feed app that takes an XML format data and parses it to a JS object and shows it with the pagination.
 
 <p align="center">
 	<img src="preview.png" width="100%">
