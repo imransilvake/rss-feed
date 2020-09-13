@@ -30,13 +30,6 @@ const theme = createMuiTheme({
 	}
 });
 
-// app styles
-const appStyles = {
-	linearProgress: {
-		backgroundColor: 'var(--c6)'
-	}
-};
-
 /**
  * App Container
  * @returns {*}
@@ -46,7 +39,7 @@ const App = () => {
 	return (
 		<section className="rp-app-root">
 			<MuiThemeProvider theme={theme}>
-				<Suspense fallback={(<LinearProgress style={appStyles.linearProgress} />)}>
+				<Suspense fallback={(<LinearProgress />)}>
 					<BrowserRouter>
 						{/* Header */}
 						<header className="rp-header">
