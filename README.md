@@ -24,7 +24,6 @@ A simple rss parser
 - [X] [Redux Toolkit](https://redux-toolkit.js.org/)
 - [X] [Redux Devtools Extension](https://github.com/zalmoxisus/redux-devtools-extension)
 - [X] [Material-UI](https://material-ui.com/)
-- [X] [FontAwesome](https://fontawesome.com/)
 - [X] [Jest Fetch Mock](https://github.com/jefflau/jest-fetch-mock/)
 
 

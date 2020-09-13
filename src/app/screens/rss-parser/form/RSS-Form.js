@@ -63,7 +63,7 @@ const RSSParserForm = () => {
 
 	return (
 		<Container maxWidth="md">
-			<form onSubmit={handleSubmit} className="rp-parser-form" data-testid="rp-parser-form">
+			<form onSubmit={handleSubmit} className="rp-parser-form">
 				<div className={`rp-content ${response['info'] || (errors && errors['message']) ? 'rp-on-result' : ''}`}>
 					{/* Left */}
 					<div className="rp-left">
