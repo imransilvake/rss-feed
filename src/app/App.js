@@ -17,7 +17,7 @@ import ScrollToTop from './components/scroll-to-top/Scroll-To-Top';
 const theme = createMuiTheme({
 	palette: {
 		primary: {
-			main: '#38805b',
+			main: '#ff7816',
 			contrastText: '#ffffff'
 		},
 		secondary: {
