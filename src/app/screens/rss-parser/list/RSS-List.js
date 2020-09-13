@@ -12,7 +12,7 @@ import Container from '@material-ui/core/Container';
 // app
 import './RSS-List.scss';
 import '../../../utilities/Array-Methods';
-import Loader from '../../../../assets/images/loader.gif';
+import Loader from '../../../../assets/svg/loader.svg';
 import RSSListItem from './rss-list-item/RSS-List-Item';
 import paginatedList from '../../../utilities/Pagination';
 import RSSListPagination from './rss-list-pagination/RSS-List-Pagination';
@@ -116,7 +116,7 @@ const RSSParserList = () => {
 				{errors['message'] && (<h3>{errors['message']}</h3>)}
 				{
 					errors['message'] && (
-						<p>The requested resource could not be found but may be available in the future.</p>
+						<p>{errors['description']}</p>
 					)
 				}
 			</div>

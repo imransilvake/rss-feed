@@ -62,10 +62,11 @@ export const fetchApi = (api) => {
 		const response = await fetch(`${CORS_PROXY}${api}`);
 
 		// return on error
-		if (response && response.status === 404) {
+		if (response && response.status !== 200) {
 			// dispatch: error
 			dispatch(listFailure({
-				message: '404: Page not found'
+				message: 'Failed to Retrieve Feeds',
+				description: 'The requested feeds could not be feteched from the server.'
 			}));
 			return;
 		}

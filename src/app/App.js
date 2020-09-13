@@ -33,7 +33,7 @@ const theme = createMuiTheme({
 // app styles
 const appStyles = {
 	linearProgress: {
-		backgroundColor: 'var(--c1)'
+		backgroundColor: 'var(--c6)'
 	}
 };
 
