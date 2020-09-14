@@ -37,10 +37,10 @@ const RSSParserList = () => {
 
 	// scroll to top of list
 	useEffect(() => {
-		const element = document.getElementById('rp-items');
+		const element = document.getElementById('rp-start');
 		if (element) {
 			window.scroll({
-				top: element.scrollTop,
+				top: element.offsetTop - 15,
 				behavior: 'smooth'
 			});
 		}

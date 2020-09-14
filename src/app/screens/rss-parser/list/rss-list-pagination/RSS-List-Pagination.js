@@ -23,7 +23,9 @@ const RSSListPagination = ({ positionStart }) => {
 	const { response } = useSelector(parserListSelector);
 
 	return (
-		<div className={positionStart ? 'rp-pagination rp-start' : 'rp-pagination'}>
+		<div
+			id={positionStart ? 'rp-start' : null}
+			className={positionStart ? 'rp-pagination rp-start' : 'rp-pagination'}>
 			<Button
 				variant="contained"
 				color="secondary"
