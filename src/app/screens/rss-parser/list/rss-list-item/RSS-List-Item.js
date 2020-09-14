@@ -13,7 +13,7 @@ const RSSListItem = ({ item }) => {
 		<div className="rp-item">
 			<div className="rp-title-date">
 				{/* title */}
-				{item.title && <h4 className="rp-title rp-ellipses">{item.title}</h4>}
+				{item.title && <h4 className="rp-ellipses rp-title">{item.title}</h4>}
 
 				{/* Date */}
 				{item.pubDate && <p className="rp-date">{item.pubDate}</p>}

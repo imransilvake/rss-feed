@@ -61,6 +61,10 @@
 		.rp-title-date {
 			display: block;
 
+			.rp-title {
+				white-space: normal;
+			}
+
 			.rp-date {
 				margin-top: 5px;
 			}

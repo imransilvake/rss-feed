@@ -57,4 +57,23 @@
 		margin-top: 20px;
 		text-align: center;
 	}
+
+	// media
+	@media (max-width: 600px) {
+		.rp-content {
+			.rp-info {
+				.rp-title-date {
+					display: block;
+
+					.rp-title {
+						white-space: normal;
+					}
+
+					.rp-date {
+						margin-top: 5px;
+					}
+				}
+			}
+		}
+	}
 }

@@ -67,7 +67,7 @@ const RSSParserList = () => {
 							<div className="rp-title-date">
 								{/* title */}
 								{response['info'].title && (
-									<h1 className="rp-title rp-ellipses">{response['info'].title}</h1>
+									<h1 className="rp-ellipses rp-title">{response['info'].title}</h1>
 								)}
 
 								{/* date */}
